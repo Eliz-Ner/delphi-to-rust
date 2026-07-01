@@ -16,7 +16,7 @@ slint::slint! {
         callback clicked;
 
         min-height: 22px;
-        
+
         states [
             hovered when touch-area.has-hover : {
                 bg.background: Palette.accent-background;
@@ -60,7 +60,7 @@ slint::slint! {
         callback restart_clients();
         callback close_clients();
         callback show_menu();
-        
+
         callback add_server(string);
         callback delete_server();
         callback delete_log();
@@ -117,7 +117,7 @@ slint::slint! {
         changed selected_project_index => {
             root.prepare_settings_dialog();
         }
-        
+
         changed selected_user_index => {
             root.user_selected(root.selected_user_index);
         }
@@ -428,15 +428,15 @@ slint::slint! {
                                     alignment: start;
                                     spacing: 8px;
                                     width: 220px;
-                                    Text { 
+                                    Text {
                                         text: root.selected_project_index >= 0 ? "Параметры проекта:" : "Проект не выбран"; 
-                                        height: 20px; 
+                                        height: 20px;
                                         color: Palette.foreground;
                                         opacity: root.selected_project_index >= 0 ? 1.0 : 0.5;
                                         font-weight: 600;
                                     }
-                                    CheckBox { 
-                                        text: "Автозагрузка"; 
+                                    CheckBox {
+                                        text: "Автозагрузка";
                                         enabled: root.selected_project_index >= 0;
                                         checked <=> root.autoload_project_setting;
                                         toggled => {
@@ -445,8 +445,8 @@ slint::slint! {
                                             }
                                         }
                                     }
-                                    CheckBox { 
-                                        text: "Разрешение загрузки"; 
+                                    CheckBox {
+                                        text: "Разрешение загрузки";
                                         enabled: root.selected_project_index >= 0 && !root.autoload_project_setting;
                                         checked: root.autoload_project_setting || root.allow_load_project_setting;
                                         toggled => {
@@ -523,16 +523,16 @@ slint::slint! {
                                         alignment: start;
                                         horizontal-stretch: 1;
                                         HorizontalLayout { spacing: 10px; Text { text: "Пароль:"; vertical-alignment: center; width: 120px; color: Palette.foreground; } LineEdit { height: 24px; } }
-                                        HorizontalLayout { 
-                                            spacing: 10px; 
+                                        HorizontalLayout {
+                                            spacing: 10px;
                                             Text { text: "Уровень доступа:"; vertical-alignment: center; width: 120px; color: Palette.foreground; } 
-                                            LineEdit { 
-                                                text <=> root.selected_user_level; 
-                                                height: 24px; 
-                                                width: 60px; 
+                                            LineEdit {
+                                                text <=> root.selected_user_level;
+                                                height: 24px;
+                                                width: 60px;
                                                 enabled: root.selected_user_index >= 0;
                                                 edited => { root.update_user_level(root.selected_user_index, self.text); }
-                                            } 
+                                            }
                                         }
                                         CheckBox { text: "Ограничение редактирования"; }
                                     }
@@ -697,17 +697,17 @@ slint::slint! {
                             width: 180px;
                             Text { text: "Имя сервера"; color: Palette.foreground; }
                             new_server_name := LineEdit { height: 24px; }
-                            Button { 
-                                text: "Добавить сервер"; height: 24px; 
-                                clicked => { 
-                                    root.add_server(new_server_name.text); 
-                                    new_server_name.text = ""; 
-                                } 
+                            Button {
+                                text: "Добавить сервер"; height: 24px;
+                                clicked => {
+                                    root.add_server(new_server_name.text);
+                                    new_server_name.text = "";
+                                }
                             }
-                            Button { 
-                                text: "Удалить сервер"; height: 24px; 
+                            Button {
+                                text: "Удалить сервер"; height: 24px;
                                 enabled: root.selected_server_index >= 0;
-                                clicked => { root.delete_server(); } 
+                                clicked => { root.delete_server(); }
                             }
                         }
                     }
@@ -827,15 +827,15 @@ slint::slint! {
                             alignment: start;
                             spacing: 6px;
                             Button { text: "Добавить..."; height: 24px; clicked => { root.open_add_logs(); } }
-                            Button { 
-                                text: "Удалить"; height: 24px; 
+                            Button {
+                                text: "Удалить"; height: 24px;
                                 enabled: root.selected_log_index >= 0;
                                 clicked => { root.delete_log(); }
                             }
                             Button { text: "Удалить несуществующие"; height: 24px; clicked => { root.check_nonexistent_logs(); } }
                             Button { text: "Импорт протоколируемых"; height: 24px; clicked => { root.open_import_logs(); } }
-                            Button { 
-                                text: "Добавить файлы..."; height: 24px; 
+                            Button {
+                                text: "Добавить файлы..."; height: 24px;
                                 clicked => { root.add_log_files(); }
                             }
                         }
@@ -858,7 +858,7 @@ slint::slint! {
                     height: 100%;
                     padding: 12px;
                     spacing: 10px;
-                    Text { 
+                    Text {
                         text: root.active_dialog == "add_logs" ? "Добавить..." : "Импорт..."; 
                         font-weight: 700; height: 20px; color: Palette.foreground;
                     }
@@ -890,7 +890,7 @@ slint::slint! {
                             }
                         }
                     }
-                    HorizontalLayout { 
+                    HorizontalLayout {
                         alignment: center; spacing: 20px; height: 35px; padding-top: 10px;
                         Button { text: "Ок"; width: 80px; height: 24px; clicked => { root.commit_added_logs(); } }
                         Button { text: "Отмена"; width: 80px; height: 24px; clicked => { root.active_dialog = "logs"; } }
@@ -966,7 +966,7 @@ slint::slint! {
                             root.show_context_menu = false;
                         }
                     }
-                    
+
                     Rectangle {
                         height: 7px;
                         VerticalLayout {
@@ -985,7 +985,7 @@ slint::slint! {
                             root.show_context_menu = false;
                         }
                     }
-                    
+
                     Rectangle {
                         height: 7px;
                         VerticalLayout {
@@ -1005,7 +1005,7 @@ slint::slint! {
                             root.show_context_menu = false;
                         }
                     }
-                    
+
                     Rectangle {
                         height: 7px;
                         VerticalLayout {
@@ -1076,7 +1076,7 @@ fn make_row(items: &[&str]) -> RowModel {
 fn main() -> Result<(), slint::PlatformError> {
     // Конфигурация
     let config = Rc::new(RefCell::new(load_config()));
-    
+
     let ui = MainWindow::new()?;
     let weak_ui = ui.as_weak();
 
@@ -1095,7 +1095,7 @@ fn main() -> Result<(), slint::PlatformError> {
                 if let Some(win) = inner_open.upgrade() {
                     win.set_is_restoring(true);
                     let _ = win.show();
-                    
+
                     let win_weak = inner_open.clone();
                     slint::Timer::single_shot(std::time::Duration::from_millis(1500), move || {
                         if let Some(w) = win_weak.upgrade() {
@@ -1135,7 +1135,7 @@ fn main() -> Result<(), slint::PlatformError> {
     let logs_rows: Rc<RefCell<Vec<RowModel>>> = Rc::new(RefCell::new(Vec::new()));
     let available_logs_rows: Rc<RefCell<Vec<RowModel>>> = Rc::new(RefCell::new(Vec::new()));
     let settings_chbase_rows: Rc<RefCell<Vec<RowModel>>> = Rc::new(RefCell::new(Vec::new()));
-    
+
     let settings_users_rows: Rc<RefCell<Vec<RowModel>>> = Rc::new(RefCell::new(vec![
         make_row(&["SUPERVISOR", "10", ""]),
         make_row(&["USER", "1", ""]),
@@ -1148,20 +1148,20 @@ fn main() -> Result<(), slint::PlatformError> {
         ui.set_autoload_windows(current_cfg.autoload_windows);
         ui.set_machine_name(current_cfg.machine_name.clone().into());
         ui.set_chbase_path(current_cfg.chbase_path.clone().into());
-        
+
         // Проекты
         for project in &current_cfg.projects {
             let autoload_str = if project.autoload { "Да" } else { "Нет" };
             let allow_str = if project.allow_load { "Да" } else { "Нет" };
-            
+
             settings_project_rows.borrow_mut().push(make_row(&[&project.name, autoload_str, allow_str]));
-            
+
             if project.autoload {
                 project_rows.borrow_mut().push(make_row(&[&project.name, "Остановлен"]));
             }
         }
     }
-    
+
     ui.set_projects_data(slint::ModelRc::new(slint::VecModel::from(project_rows.borrow().clone())));
     ui.set_settings_projects_data(slint::ModelRc::new(slint::VecModel::from(settings_project_rows.borrow().clone())));
 
@@ -1172,7 +1172,7 @@ fn main() -> Result<(), slint::PlatformError> {
         move || {
             let Some(window) = weak_ui.upgrade() else { return; };
             let cfg = config_rc.borrow();
-            
+
             let mut sp_rows = settings_project_rows.borrow_mut();
             sp_rows.clear();
             for project in &cfg.projects {
@@ -1183,10 +1183,10 @@ fn main() -> Result<(), slint::PlatformError> {
             window.set_settings_projects_data(slint::ModelRc::new(slint::VecModel::from(sp_rows.clone())));
             window.set_autoload_windows(cfg.autoload_windows);
             window.set_chbase_path(cfg.chbase_path.clone().into());
-            
+
             window.set_selected_user_index(-1);
             window.set_selected_user_level("".into());
-            
+
             window.invoke_prepare_settings_dialog();
             window.set_active_dialog("settings".into());
         }
@@ -1425,7 +1425,7 @@ fn main() -> Result<(), slint::PlatformError> {
             }
             cfg.projects = projects;
             let _ = save_config(&cfg);
-            
+
             let new_projects = {
                 let mut p_rows = project_rows.borrow_mut();
                 p_rows.clear();

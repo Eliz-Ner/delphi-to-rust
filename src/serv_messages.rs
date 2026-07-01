@@ -1,5 +1,5 @@
 use std::sync::atomic::{AtomicI32, Ordering};
-use std::fmt; 
+use std::fmt;
 use chrono::{DateTime, Local};
 
 pub static NUM_C_OBJ: AtomicI32 = AtomicI32::new(0);
@@ -71,7 +71,7 @@ pub struct SrvMsg {
     pub client_id: i32,
     pub msg_date_time: DateTime<Local>,
     pub prj_name: String,
-    pub sender_id: Option<usize>, 
+    pub sender_id: Option<usize>,
     pub payload: MsgPayload,
 }
 
